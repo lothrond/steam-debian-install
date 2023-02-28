@@ -8,3 +8,7 @@ Install:
 Remove:
 
     sudo make remove
+
+Run:
+
+	steam-install
