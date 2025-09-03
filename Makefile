@@ -9,7 +9,7 @@ install: $(SRC)
 	@echo "Done."
 
 .PHONY: remove
-remove: $(DEST)/$(SRC)
+remove: $(DEST)/steam-install
 	@echo "Removing ..."
 	rm $(DEST)/steam-install
 	@echo "Done."
