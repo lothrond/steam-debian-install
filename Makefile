@@ -1,14 +1,15 @@
 SRC := steam-install.sh
-DEST := /usr/bin
+DEST := /usr/local/bin
 
 .PHONY: install
 install: $(SRC)
 	@echo "Installing ..."
-	@install -Dt $(DEST) -m 755 $(SRC)
+	@cp $(SRC) $(DEST)/steam-install
+	@chmod 755 $(DEST)/steam-install
 	@echo "Done."
 
 .PHONY: remove
 remove: $(DEST)/$(SRC)
 	@echo "Removing ..."
-	rm $(DEST)/$(SRC)
+	rm $(DEST)/steam-install
 	@echo "Done."

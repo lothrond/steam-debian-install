@@ -24,6 +24,16 @@ add_nonfree_repo() {
 	fi
 }
 
+# Why debian, why?
+really_add_nonfree_repo() {
+	sources=/etc/apt/sources.list
+	echo "deb https://deb.debian.org/debian bookworm main non-free non-free-firmware" > $sources
+	echo "deb https://deb.debian.org/debian bookworm-updates main non-free non-free-firmware" >> $sources
+	echo "deb https://deb.debian.org/debian-security/ bookworm-security main non-free non-free-firmware" >> $sources
+	sudo apt update -y
+}
+
+
 install_steam() {
 	if echo "Installing steam ..." && sudo apt install steam -y; then
 		echo -e "Okay.\n"
@@ -33,8 +43,10 @@ install_steam() {
 if enable_32_bit_support; then
 	if get_apt_add_repository_tool; then
 		if add_nonfree_repo; then
-			if install_steam; then
-				echo "Done."; exit 0
+			if really_add_nonfree_repo; then
+				if install_steam; then
+					echo "Done."; exit 0
+				fi
 			fi
 		fi
 	fi
